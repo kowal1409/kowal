@@ -1,0 +1,4 @@
+KSIAZKA = {                                                               
+        'cena' : '100'                                                                import main 
+}
+print ("cena ksiazki: {}".format(KSIAZKA))                        
