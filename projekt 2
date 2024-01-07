@@ -1,0 +1,91 @@
+ksiazka1 = {
+    'tytuł' : 'historia Starozytna',
+    'cena' : '200zł',
+    'ilosc stron' : '150'
+}
+ksiazka2 = {
+    'tytuł' : 'historia Grecka',
+    'cena' : '220zł',
+    'ilosc stron' : '1250'
+}
+ksiazka3 = {
+    'tytuł' : 'historia Alberta Einsteina',
+    'cena' : '205zł',
+    'ilosc stron' : '1150'
+}
+ksiazka4 = {
+    'tytuł' : 'historia o zołwiu',
+    'cena' : '500zł',
+    'ilosc stron' : '1000'
+}
+
+Biblioteka = [ksiazka1, ksiazka2, ksiazka3, ksiazka4]
+
+def inf(dc):
+    for k,v in dc.items():
+        print(f"{k}:  {v}")
+
+print("==="*25)
+
+for klucz, wartosc in ksiazka1.items():
+    print(f'{klucz} - {wartosc}') 
+print("==="*25)
+
+for klucz, wartosc in ksiazka2.items():
+    print(f'{klucz} - {wartosc}') 
+print("==="*25)
+
+for klucz, wartosc in ksiazka3.items():
+    print(f'{klucz} - {wartosc}') 
+print("==="*25)
+
+for klucz, wartosc in ksiazka4.items():
+    print(f'{klucz} - {wartosc}') 
+print("==="*25)
+    
+def edycja(dc):
+    print('podaj ksiazke do edycji')
+    print('==='*25)
+    inf(ksiazka1)
+    print('==='*25)
+    inf(ksiazka2)
+    print('==='*25)
+    inf(ksiazka3)
+    print('==='*25)
+    inf(ksiazka4)
+    print('==='*25)
+    inp = input()
+    print('==='*25)
+    inf(ksiazka1)
+    print('==='*25)
+    inf(ksiazka2)
+    print('==='*25)
+    inf(ksiazka3)
+    print('==='*25)
+    inf(ksiazka4)
+    print('==='*25)
+    print('podaj dane do edycji')
+    dc[inp] = input('podaj nowe dane')
+
+while True:
+    print('e - wyjdz z programu')
+    print('i - informacje o bibliotece')
+    print('ed - edycja biblioteki')
+    inp = input().lower()
+    if 'e' == inp:
+        break
+    elif 'i' == inp:
+        print('==='*25)
+        inf(ksiazka1)
+        print('==='*25)
+        inf(ksiazka2)
+        print('==='*25)
+        inf(ksiazka3)
+        print('==='*25)
+        inf(ksiazka4)
+        print('==='*25)
+    elif 'ed' == inp:
+        edycja(Biblioteka)
+    else:
+        print('program zakonczył działanie')
+        break
