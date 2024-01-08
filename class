@@ -1,0 +1,32 @@
+class Uczen:
+    def __init__(self , _nazwa, _data_urodzenia, _wzrost, _waga,) -> None:
+        self.nazwa = _nazwa
+        self.data_urodzenia = _data_urodzenia
+        self.wzrost = _wzrost
+        self.waga = _waga
+        self.ocenaMatematyka = []
+
+
+
+    def inf(self):
+        print(self.nazwa)
+        print(self.wzrost)
+        print(self.data_urodzenia)
+        print(self.waga)
+
+    def dodaj_ocena_matematyka(self, ocena:int):
+        self.ocenaMatematyka.append(ocena)
+
+    def policz_srednie(self):
+        print(sum(self.ocenaMatematyka)/len(self.ocenaMatematyka))
+
+
+
+u1 = Uczen('Emil', '13,09.2009','150cm', '158kg')
+u1.dodaj_ocena_matematyka(6)
+u1.dodaj_ocena_matematyka(1)
+u1.dodaj_ocena_matematyka(2)
+u1.dodaj_ocena_matematyka(3)
+u1.dodaj_ocena_matematyka(3)
+u1.policz_srednie()
+u1.inf()
