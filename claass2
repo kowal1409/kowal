@@ -1,0 +1,21 @@
+class Air_force1:
+    def __init__(self, _cena, _kolor, _nazwa) -> None:
+        self.cena = _cena
+        self.kolor = _kolor
+        self.nazwa = _nazwa
+    
+    def inf(self):
+        print(f"nazwa {self.nazwa}")
+        print(f'color {self.kolor}')
+        print(f'nazwa {self.nazwa}')
+    
+buty1 = Air_force1(1000, 'czarny' , 'of white')
+
+buty2 = Air_force1(1500, 'biały' , 'of gren')
+
+buty3 = Air_force1(1200, 'fioletowy' , 'of black')
+
+wszystkie_buty = [buty1, buty2, buty3]
+
+for el in wszystkie_buty:
+    el.inf()
