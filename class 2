@@ -1,0 +1,30 @@
+# Klasa Prostokąt: Napisz klasę Prostokat z atrybutami szerokosc i wysokosc. Dodaj metody do obliczenia pola i obwodu prostokąta.
+
+class prostokat:
+    ile = 0
+    def __init__(self, szerkosc, wysokosc ) -> None:
+        self.szerokosc = szerkosc
+        self.wysokosc = wysokosc
+        prostokat.ile += 1
+
+        @staticmethod
+        def trojkat(b1,b2,b3):
+            if b1**2 + b2**2 == b3**2 or 
+
+
+    def obwod_prostokata(self):
+        return 2*self.wysokosc + 2*self.szerokosc
+        
+
+    def pole_prostokat(self):
+        return self.wysokosc * self.szerokosc
+    
+    @classmethod
+    def wyswietl(cls):
+        return cls.ile
+
+p1= prostokat(2,6)
+print(p1.obwod_prostokata())
+print(p1.pole_prostokat())
+print(prostokat.wyswietl())
+print(p1.wyswietl())
