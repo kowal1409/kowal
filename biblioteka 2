@@ -1,0 +1,67 @@
+Biblioteka = {
+    'klucz' : 'wartosc',
+    'klucz1' : "wartosc1",
+    'klucz2' : 'wartosc2'
+}
+import inf
+
+import edycja
+
+def edycja_listy(lst):
+    while True:
+        print(lst)
+        print("a - dodaj element")
+        print('b - usun element')
+        print('e - exit edycja list')
+        inp = input()
+        if 'a' == inp:
+            lst = float(input())
+            lst.append(lst)
+            print("ocena dodana")
+        elif 'b' == inp:
+            lst = float(input())
+            lst.remove(lst)
+            print("ocena usunieta")
+        elif "e" == inp:
+            break
+        else:
+            break
+
+import kiedy
+
+2 kod
+def inf(dc):
+    for k,v in dc.items:
+        print(f'{k} , {v}')
+
+kod 3 
+import inf
+import main
+from main import Biblioteka
+
+def edycja(dc):
+    print("podaj klucz do edcycji")
+    inf(Biblioteka)
+    inp= input()
+    inp[dc] = input("podaj nowy klucz")
+
+kod 4 
+import edycja
+import inf
+import main
+from main import Biblioteka
+
+while True:
+    print('e - exit')
+    print('ed - edycja')
+    print('i = inf')
+    inp = input().lower()
+    if 'e' == inp:
+        break
+    elif'ed' == inp:
+        edycja(Biblioteka)
+    elif 'i' == inp:
+        inf(Biblioteka)
+    else: 
+        break
+    
