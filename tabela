@@ -1,0 +1,119 @@
+plasza_per = [# z Plansza z zapamietanymi ruchami
+    [' ','|',' ','|',' '] ,['-','|','-','|','-'], [' ','|',' ','|',' '], ['-','|','-','|','-'], [' ','|',' ','|',' '], ['-','|','-','|','-']
+
+]
+plasza_temp=[ #plansza z tymczasowymi ruchami
+    [' ','|',' ','|',' '] ,['-','|','-','|','-'], [' ','|',' ','|',' '], ['-','|','-','|','-'], [' ','|',' ','|',' '], ['-','|','-','|','-']
+
+]
+def przepisz():
+    for y in range(5):
+        for x in range(5):
+            plasza_temp[y][x] = plasza_per[y][x]
+
+def check_is_empty( x,  y ):
+    if plasza_per[y][x] == ' ':
+        return True
+    else:
+        return False
+    
+def wygrana_gra(t_gracz):
+    if plasza_per[0][0] ==t_gracz and plasza_per[2][2] == t_gracz and plasza_per[4][4] == t_gracz:
+        
+        return True
+    if plasza_per[0][4] == t_gracz and plasza_per[2][2] == t_gracz and plasza_per[4][0] == t_gracz:
+        
+        return True
+    for y in range(3):
+        if plasza_per[y][0]==t_gracz and plasza_per[y][2] == t_gracz and plasza_per[y][4] == t_gracz:
+           
+           return True
+    for y in range(3):
+        if plasza_per[0][y] == t_gracz and plasza_per[2][y] == t_gracz and plasza_per[4][y] == t_gracz:
+            
+            return True
+    return False
+
+
+def wyswietlenie(flaga):
+
+    print()
+    print()
+    print()
+    print()
+    print()
+    for y in range(5) : # od 0 do 4 co 1  -----> 0,1,2,3,4   wykona sie 5 prazy     dla kazdej lini //y
+        for x in range(5): # dla kazdego znaku w linii  // x
+            print (plasza_temp[y][x],end='')
+        print()
+    if flaga == 'O':
+        print("miejsce zajete")
+    
+       
+
+
+def wstawianie(x,y,t_gracz):
+    plasza_temp[y][x]=t_gracz
+
+def wstawianie_perm(x,y,t_gracz):
+    plasza_per[y][x]=t_gracz
+
+    
+gracz='X'
+x=2
+y=2
+tura=0
+flaga=' '
+wstawianie(x,y,gracz)
+wyswietlenie(flaga)
+
+while True: 
+
+    przepisz()
+    inp = input()
+    if inp=='w':
+        y = y -2
+        if y==-2:
+            y=4
+
+    elif inp=='s':
+        y = y + 2
+        if y==6:
+            y=0
+    elif inp=='a':
+        x = x-2
+        if x==-2:
+            x=4
+    elif inp=='d':
+        x = x+2
+        if  x==6:
+            x=0
+    elif inp == 'g':
+        if check_is_empty(x,y):
+            wstawianie_perm(x,y,gracz)
+            tura += 1
+            if wygrana_gra(gracz)==True:
+                 print("wygrana gracz "+ gracz)
+                 print("GAME OVER")
+                 break
+            elif  tura == 9:
+                print("REMIS")
+                print("GAME OVER")
+                break   
+            if gracz == 'X':
+                gracz = 'O'
+            else:
+                gracz = 'X'
+        else :
+            flaga='O'
+ 
+        
+    
+    wstawianie(x,y,gracz)  
+    wyswietlenie(flaga)
+   
+    flaga=' '
+
+# wymysl inną gre do kodu!!!!!!!!!!!!
+# nie moze byc w tym samym miejscu!!!!!!!!!!!1 wymysl jak to zrobic 
+
