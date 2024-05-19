@@ -1,0 +1,122 @@
+class Plansza:
+
+    
+    def __init__(self): #konstruktor ( wywolane przy twprzeniu obiektu )
+        self.gameboard = [[' ','|',' ','|',' '] ,['-','|','-','|','-'], [' ','|',' ','|',' '],
+                    ['-','|','-','|','-'], [' ','|',' ','|',' '], ['-','|','-','|','-']]
+        self.flaga=''
+  
+    def wstawianie(self,x,y,t_gracz):
+        
+        self.gameboard[y][x]== t_gracz
+      
+    def check_is_empty( self,x,  y ):
+        if self.gameboard[y][x] == ' ':
+            return True
+        else:
+            return False
+        
+    def wygrana_gra(self,t_gracz):
+        if self.gameboard[0][0] ==t_gracz and self.gameboard[2][2] == t_gracz and self.gameboard[4][4] == t_gracz:
+            
+            return True
+        if self.gameboard[0][4] == t_gracz and self.gameboard[2][2] == t_gracz and self.gameboard[4][0] == t_gracz:
+            
+            return True
+        for y in range(3):
+            if self.gameboard[y][0]==t_gracz and self.gameboard[y][2] == t_gracz and self.gameboard[y][4] == t_gracz:
+            
+                return True
+        for y in range(3):
+            if self.gameboard[0][y] == t_gracz and self.gameboard[2][y] == t_gracz and self.gameboard[4][y] == t_gracz:
+                
+                return True
+        return False
+    def wyswietlenie(self,tx,ty):
+        
+        print()
+        print()
+        print()
+        print()
+        print()
+        for y in range(5) : # od 0 do 4 co 1  -----> 0,1,2,3,4   wykona sie 5 prazy     dla kazdej lini //y
+            for x in range(5): # dla kazdego znaku w linii  // x
+                print (self.gameboard[y][x],end='')
+            if y ==4:
+                print("\tX: ",int(tx/2)+1,"      Y: ",int(ty/2)+1)
+            print()
+        if self.flaga == 'O':
+            print("miejsce zajete")
+    def wstawianie(self,x,y,t_gracz):
+        self.gameboard[y][x]=t_gracz
+
+    def przepisz(self, b):
+         for y in range(5):
+            for x in range(5):
+                self.gameboard[y][x] = b.gameboard[y][x]
+
+
+class Gra:
+    def __init__(self): 
+        self.gracz='X'
+        self.x=2
+        self.y=2
+        self.tura=0
+        self.flaga=' '
+        self.temp = Plansza() # na ruchy tymczasowe
+        self.perma = Plansza() # na zapisane ruchy 
+    def start(self):
+        self.temp.wstawianie(self.x,self.y,self.gracz)  
+        self.temp.wyswietlenie(self.x,self.y)
+        while True: 
+
+            self.temp.przepisz(self.perma)   #przepisuje ablice perm do tymczasowiej
+            inp = input()
+            if inp=='w':
+                self.y = self.y -2
+                if self.y==-2:
+                    self.y=4
+
+            elif inp=='s':
+                self.y = self.y + 2
+                if self.y==6:
+                    self.y=0
+            elif inp=='a':
+                self.x = self.x-2
+                if self.x==-2:
+                    self.x=4
+            elif inp=='d':
+                self.x = self.x+2
+                if  self.x==6:
+                    self.x=0
+            elif inp == 'g':
+                if self.perma.check_is_empty(self.x,self.y):
+                    self.perma.wstawianie(self.x,self.y,self.gracz)
+                    self.tura += 1
+                    if self.perma.wygrana_gra(self.gracz)==True:
+                        print("wygrana gracz "+ self.gracz)
+                        print("GAME OVER")
+                        break
+                    elif  self.tura == 9:
+                        print("REMIS")
+                        print("GAME OVER")
+                        break   
+                    if self.gracz == 'X':
+                        self.gracz = 'O'
+                    else:
+                        self.gracz = 'X'
+                else :
+                    self.flaga='O'
+        
+                
+            
+            self.temp.wstawianie(self.x,self.y,self.gracz)  
+            self.temp.wyswietlenie(self.x,self.y)
+        
+            self.flaga=' '
+test = Gra()
+test.start()
+
+# zastanów sie nad zrobieniem innej gry :)
+
+
