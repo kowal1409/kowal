@@ -1,0 +1,115 @@
+import curses
+from random import randint
+import threading
+import time
+class Blok:
+
+    def __init__(self,type):
+        self.type = type 
+        if type == 1:#L
+            self.body = [ [' ',' ',' ',' '] ,['X',' ',' ',' '] ,['X',' ',' ',' '] ,['X','X',' ',' ']] # L
+        if type == 2:
+            self.body = [ ['X','X',' ',' '] ,['X','X',' ',' '] ,[' ',' ',' ',' '] ,[' ',' ',' ',' ']] # kwadrat
+        if type == 3:
+            self.body = [ ['X','',' ',' '] ,['X','X',' ',' '] ,['X',' ',' ',' '] ,[' ',' ',' ',' ']] # Diwne cos
+        if type == 4:
+            self.body = [ [' ',' ',' ',' '] ,[' ','X',' ',' '] ,['X','X',' ',' '] ,['X',' ',' ',' ']] # lewo prawo
+        if type == 5:
+            self.body = [ ['X','',' ',' '] ,['X',' ',' ',' '] ,['X',' ',' ',' '] ,['X',' ',' ',' ']] # dluga prosta
+    
+    def wypisz(self):
+        for y in range(4):
+            for x in range(4):
+                print (self.body[y][x],end='')
+            print()
+
+
+# zrobic figure 1 na 1 i 2 na 1 
+
+class Game:
+    def __init__(self):
+
+        self.wysokosc = 25
+        self.szerokosc = 25
+        self.gameboard= [[' ']*self.wysokosc for i in range(self.szerokosc)]
+        self.blok = Blok(randint(1,5))
+        self.x = 6
+        self.y = 2
+
+    def insert_b(self):
+        for y in range(4):
+            for x in range(4):
+                if self.blok.body[x][y]== 'X':
+                    self.gameboard[self.x+x][self.y+y]='X'
+            
+    def u_insert_b(self):
+        for y in range(4):
+            for x in range(4):
+                if self.blok.body[x][y]== 'X':
+                    self.gameboard[self.x+x][self.y+y]=' '
+            
+        
+
+
+    def wypisz(self):
+        for y in range(self.wysokosc):
+            for x in range(self.szerokosc):
+                print(self.gameboard[x][y],end='')
+            print() 
+
+    def przygotuj(self):
+        for y in range(self.wysokosc): 
+            for x in range(self.szerokosc): 
+                if x == 0 or x== self.szerokosc-1:
+                    self.gameboard[x][y] = '|'
+                if y == 0 or y == self.wysokosc-1:
+                    self.gameboard[x][y] = '-'
+
+    
+    def spadaj_w_dol(self):
+        while True:
+            self.u_insert_b() 
+            self.y = self.y +1
+            self.insert_b() 
+            self.wypisz()
+            time.sleep(1)
+
+    def graj(self):
+           
+        self.przygotuj()
+        self.insert_b()
+        self.wypisz() 
+        x = threading.Thread(target=self.spadaj_w_dol)
+       
+        x.start() 
+        while True:
+                
+            inp =curses.initscr()
+            if inp == 'a':
+                self.x = self.x -1  
+            elif inp == 'd':
+                self.x = self.x +1
+            elif inp == 's':
+                self.y = self.y -1 
+
+
+
+     
+
+
+# znajdz jak nie uzywac enter i zeby dzialalo
+               
+
+
+                
+#graa
+Gra = Game()
+
+Gra.graj()
+
+# spadanie i poruszanie sie itp
+
+
+
+    
+
